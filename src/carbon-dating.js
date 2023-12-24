@@ -24,11 +24,11 @@ function dateSample(sampleActivity) {
 
    sampleActivity = Number(sampleActivity);
 
-   if (sampleActivity <= 0 || MODERN_ACTIVITY < sampleActivity) return false;
+   if (isNaN(sampleActivity) || sampleActivity <= 0 || sampleActivity > MODERN_ACTIVITY) {
+      return false;
+   }
 
-   const age = Math.log(MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD);
-
-   return Math.ceil(age);
+   return Math.ceil(Math.log(MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD));
 }
 
 module.exports = {
